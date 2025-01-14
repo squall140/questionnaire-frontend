@@ -1,11 +1,10 @@
 import React from 'react'
 
 function App() {
-
   return (
-    <>
-      <p>App page</p>
-    </>
+    <div className="App">
+      <h1> 问卷 FE </h1>
+    </div>
   )
 }
 
