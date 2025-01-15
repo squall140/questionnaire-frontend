@@ -1,5 +1,5 @@
 import React from 'react'
-import List from './pages/List'
+import List from './pages/manage/List'
 import QuestionCard from './components/QuestionCard'
 
 function App() {
