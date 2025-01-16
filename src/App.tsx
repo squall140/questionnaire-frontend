@@ -1,12 +1,11 @@
 import React from 'react'
-import List from './pages/manage/List'
-import QuestionCard from './components/QuestionCard'
+import { RouterProvider } from 'react-router-dom'
+import routerConfig from './router'
 
 function App() {
   return (
     <div className="App">
-      <h1 style={{ background: 'yellow' }}> 问卷 FE </h1>
-      <List />
+      <RouterProvider router={routerConfig} />
     </div>
   )
 }
