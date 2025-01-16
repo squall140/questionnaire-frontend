@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import styles from './List.module.scss'
+import { useSearchParams } from 'react-router-dom'
 import QuestionCard from '../../components/QuestionCard'
 
 const rawQuestionList = [
@@ -38,6 +39,9 @@ const rawQuestionList = [
 ]
 
 const List: FC = () => {
+  // const [searchParams] = useSearchParams()
+  // console.log('keyword', searchParams.get('keyword'))
+
   const [questionList, setQuestionList] = useState(rawQuestionList)
   return (
     <>
@@ -55,7 +59,7 @@ const List: FC = () => {
         })}
       </div>
 
-      <div className={styles.footer}>footer</div>
+      <div className={styles.footer}>list page footer</div>
     </>
   )
 }
