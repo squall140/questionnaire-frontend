@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react'
-import styles from './List.module.scss'
-import { useSearchParams } from 'react-router-dom'
+import styles from './common.module.scss'
+// import { useSearchParams } from 'react-router-dom'
 import QuestionCard from '../../components/QuestionCard'
+import ListSearch from '../../components/ListSearch'
 
 const rawQuestionList = [
   {
@@ -49,7 +50,9 @@ const List: FC = () => {
         <div className={styles.left}>
           <h3>我的问卷</h3>
         </div>
-        <div className={styles.right}>(搜索)</div>
+        <div className={styles.right}>
+          <ListSearch />
+        </div>
       </div>
 
       <div className={styles.content}>
