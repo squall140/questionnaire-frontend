@@ -56,9 +56,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // exclude from the main layout
-  // when the path is /question/edit/:questionId, show the QuestionLayout component
+
   {
+    // exclude from the main layout
+    // when the path is /question/edit/:questionId, show the QuestionLayout component
     path: 'question',
     element: <QuestionLayout />,
     children: [
@@ -75,3 +76,21 @@ const router = createBrowserRouter([
 ])
 
 export default router
+
+// ------------ 分割线 ------------
+
+// 常用的路由，常量
+export const HOME_PATHNAME = '/'
+export const LOGIN_PATHNAME = '/login'
+export const REGISTER_PATHNAME = '/register'
+export const MANAGE_INDEX_PATHNAME = '/manage/list'
+
+export function isLoginOrRegister(pathname: string) {
+  if ([LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname)) return true
+  return false
+}
+
+export function isNoNeedUserInfo(pathname: string) {
+  if ([HOME_PATHNAME, LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname)) return true
+  return false
+}
