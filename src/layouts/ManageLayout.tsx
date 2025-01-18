@@ -10,19 +10,31 @@ const ManageLayout: FC = () => {
   const nav = useNavigate()
   const { pathname } = useLocation()
 
-  // loading effect
-  const [loading, setLoading] = useState(false)
-
-  async function handleCreateClick() {
-    setLoading(true) // show loading effect
-    const data = await createQuestionService()
-    const { id } = data || {}
-    if (id) {
-      nav(`/question/edit/${id}`)
+  const {
+    loading,
+    error,
+    run: handleCreateClick,
+  } = useRequest(createQuestionService, {
+    manual: true,
+    onSuccess(result) {
+      nav(`/question/edit/${result.id}`)
       message.success('创建成功')
-    }
-    setLoading(false)
-  }
+    },
+  })
+
+  // loading effect
+  // const [loading, setLoading] = useState(false)
+
+  // async function handleCreateClick() {
+  //   setLoading(true) // show loading effect
+  //   const data = await createQuestionService()
+  //   const { id } = data || {}
+  //   if (id) {
+  //     nav(`/question/edit/${id}`)
+  //     message.success('创建成功')
+  //   }
+  //   setLoading(false)
+  // }
 
   // const [loading, setLoading] = useState(false)
   // async function handleCreateClick() {
