@@ -24,6 +24,7 @@ export async function createQuestionService(): Promise<ResDataType> {
 }
 
 // Get question list
+// opt: { keyword, isStar, isDeleted, page, pageSize }
 export async function getQuestionListService(
   opt: Partial<SearchOption> = {}
 ): Promise<ResDataType> {
