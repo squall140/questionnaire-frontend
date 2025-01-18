@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react'
-import styles from './common.module.scss'
 // import { useSearchParams } from 'react-router-dom'
 import QuestionCard from '../../components/QuestionCard'
 import ListSearch from '../../components/ListSearch'
-
+import styles from './common.module.scss'
 const rawQuestionList = [
   {
     _id: 'q1', //mongodb 的_id
@@ -56,7 +55,7 @@ const List: FC = () => {
       </div>
 
       <div className={styles.content}>
-        {questionList.map(q => {
+        {questionList.map((q: any) => {
           const { _id } = q
           return <QuestionCard key={_id} {...q} />
         })}

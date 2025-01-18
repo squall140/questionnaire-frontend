@@ -9,21 +9,21 @@ type SearchOption = {
   pageSize: number
 }
 
-// 获取单个问卷信息
+// Get a single question by id
 export async function getQuestionService(id: string): Promise<ResDataType> {
   const url = `/api/question/${id}`
   const data = (await axios.get(url)) as ResDataType
   return data
 }
 
-// 创建问卷
+// Post a new question
 export async function createQuestionService(): Promise<ResDataType> {
   const url = '/api/question'
   const data = (await axios.post(url)) as ResDataType
   return data
 }
 
-// 获取（查询）问卷列表
+// Get question list
 export async function getQuestionListService(
   opt: Partial<SearchOption> = {}
 ): Promise<ResDataType> {
@@ -32,7 +32,7 @@ export async function getQuestionListService(
   return data
 }
 
-// 更新单个问卷
+// Update a question
 export async function updateQuestionService(
   id: string,
   opt: { [key: string]: any }
@@ -42,14 +42,14 @@ export async function updateQuestionService(
   return data
 }
 
-// 复制问卷
+// duplicate a question
 export async function duplicateQuestionService(id: string): Promise<ResDataType> {
   const url = `/api/question/duplicate/${id}`
   const data = (await axios.post(url)) as ResDataType
   return data
 }
 
-// 批量彻底删除
+// batch delete questions
 export async function deleteQuestionsService(ids: string[]): Promise<ResDataType> {
   const url = '/api/question'
   const data = (await axios.delete(url, { data: { ids } })) as ResDataType

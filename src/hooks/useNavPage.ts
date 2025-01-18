@@ -10,8 +10,9 @@ import {
 import { setUseStrictShallowCopy } from 'immer'
 
 function useNavPage(waitingUserData: boolean) {
-  // let { username } = useGetUserInfo()
-  const username = null
+  // TODO: 切换登录  从这里给  username 赋值
+  const { username } = useGetUserInfo()
+  // const username = null
   const { pathname } = useLocation()
   const nav = useNavigate()
 
