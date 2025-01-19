@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Space, Divider, Tag, Popconfirm, Modal, message } from 'antd'
 import {
@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons'
 import { useRequest } from 'ahooks'
 import styles from './QuestionCard.module.scss'
+import { updateQuestionService } from '../services/question'
 
 const { confirm } = Modal
 
@@ -29,6 +30,21 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
   // props is an object of PropsType
   const { _id, title, createdAt, answerCount, isPublished, isStar } = props
 
+  // 修改 标星
+  const [isStarState, setIsStarState] = useState(isStar)
+  const { loading: changeStarLoading, run: changeStar } = useRequest(
+    async () => {
+      await updateQuestionService(_id, { isStar: !isStarState })
+    },
+    {
+      manual: true,
+      onSuccess() {
+        setIsStarState(!isStarState) // 更新 state
+        message.success('已更新')
+      },
+    }
+  )
+
   function del() {
     confirm({
       title: '确定删除该问卷？',
@@ -45,7 +61,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
         <div className={styles.left}>
           <Link to={isPublished ? `/question/stat/${_id}` : `/question/edit/${_id}`}>
             <Space>
-              {/* {isStarState && <StarOutlined style={{ color: 'red' }} />} */}
+              {isStarState && <StarOutlined style={{ color: 'red' }} />}
               {title}
             </Space>
           </Link>
@@ -90,7 +106,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
               // onClick={changeStar}
               // disabled={changeStarLoading}
             >
-              {/* {isStarState ? '取消标星' : '标星'} */}
+              {isStarState ? '取消标星' : '标星'}
             </Button>
             <Popconfirm
               title="确定复制该问卷？"
@@ -106,7 +122,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
               type="text"
               icon={<DeleteOutlined />}
               size="small"
-              // onClick={del}
+              onClick={del}
               // disabled={deleteLoading}
             >
               删除
