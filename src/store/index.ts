@@ -1,8 +1,14 @@
-import React, { FC } from 'react'
+import { configureStore } from '@reduxjs/toolkit'
+import userReducer, { UserStateType } from './userReducer'
 
-const useIndex = () => {
-  return {
-    name: 'useIndex',
-  }
+export type StateType = {
+  user: UserStateType
 }
-export default useIndex
+
+export default configureStore({
+  reducer: {
+    user: userReducer,
+
+    // 分模块，可扩展
+  },
+})
